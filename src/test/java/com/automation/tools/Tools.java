@@ -28,10 +28,10 @@ public class Tools {
         while (br <= 5) {
             try {
                 br++;
-                getWebDriver().manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
-                WebDriverWait wait = new WebDriverWait(getWebDriver(), 40);
+                getWebDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+                WebDriverWait wait = new WebDriverWait(getWebDriver(), 10);
                 element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-                getWebDriver().manage().timeouts().implicitlyWait(40, TimeUnit.SECONDS);
+                getWebDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
                 return element;
             } catch (Exception e) {
                 if (br == 5) {
@@ -39,7 +39,7 @@ public class Tools {
                     throw e;
                 }
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(50);
                 } catch (Exception exc) {
                 }
             }
