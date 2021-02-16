@@ -6,7 +6,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(strict = true,
         features = {"./src/test/resources/features/"},
         format = {"pretty","json:target/cucumber.json","html:target/site/cucumber-pretty" },
-        tags = {"@Test1"},
+        tags = {"@Test1,@Test2"},
         glue = {"com.automation.steps"}
 )
 public class DebugRunnerTest {

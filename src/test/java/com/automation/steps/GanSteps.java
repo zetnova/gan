@@ -39,7 +39,9 @@ public class GanSteps extends Tools {
 
     @And("^check the tickbox with text I accept the Terms and Conditions and certify that I am over  the age of 18$")
     public void checkTickbox() throws Throwable {
-     checkboxTermsAndConditions().click();
+
+      // if(!checkboxTermsAndConditions().isSelected())  ;
+            checkboxTermsAndConditions().click();
     }
 
    @And("^submit the form by clicking the JOIN NOW button$")
@@ -53,6 +55,50 @@ public class GanSteps extends Tools {
         String errorTextToBeVerified=dateOfBirdError().getText();
        Assert.assertTrue("Text Not found",errorTextToBeVerified.contains("This field is required"));
         destroyDriver();
+    }
+    @And("^select Date of Birth$")
+    public void selectDateOfBirth() throws Throwable {
+        Select dobDayValue=new Select(dodDay());
+        dobDayValue.selectByVisibleText("11");
+
+        Select dobMonthValue=new Select(dodMonth());
+        dobMonthValue.selectByVisibleText("June");
+
+        Select dobYearValue=new Select(dodYear());
+        dobYearValue.selectByVisibleText("1986");
+    }
+    @And("^fill up the rest of required fields and add invalid format of \"(.*?)\" and \"(.*?)\"$")
+    public void fillUpAllRequiredFields(String password, String re_typePassword) throws Throwable {
+        emailAddress().sendKeys("zzzzz@abv.bg");
+        telephone().sendKeys("642636011");
+        mobile().sendKeys("642636022");
+        addressLine1().sendKeys("calle Pinar del Rey 49 P02 C");
+        addressCity().sendKeys("Sao Paulo");
+        addressCounty().sendKeys("Sao Paulo");
+        postCode().sendKeys("28033");
+
+
+        Select countryAddress=new Select(selectCountry());
+        countryAddress.selectByVisibleText("BRAZIL");
+
+        chooseUserName().sendKeys("xxxxxzzz");
+        choosePassword().sendKeys("1111111");
+        re_typePassword().sendKeys("1111111");
+
+        Select securityQuestion1=new Select(selectSecurityQuestion1());
+        securityQuestion1.selectByVisibleText("In what city or town was your first job?");
+
+        securityAnswer1().sendKeys("Sofia");
+
+        Select securityQuestion2=new Select(selectSecurityQuestion2());
+        securityQuestion2.selectByVisibleText("What is your favorite color?");
+
+        securityAnswer2().sendKeys("Green");
+
+        Select selectCurrencyA=new Select(selectCurrency());
+        selectCurrencyA.selectByVisibleText("Euros");
+
+
     }
 
 
