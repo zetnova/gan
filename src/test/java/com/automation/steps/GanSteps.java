@@ -67,7 +67,7 @@ public class GanSteps extends Tools {
         Select dobYearValue=new Select(dodYear());
         dobYearValue.selectByVisibleText("1986");
     }
-    @And("^fill up the rest of required fields and add invalid format of \"(.*?)\" and \"(.*?)\"$")
+    @And("^fill up the rest of required fields and add format of \"(.*?)\" and \"(.*?)\"$")
     public void fillUpAllRequiredFields(String password, String re_typePassword) throws Throwable {
         emailAddress().sendKeys("zzzzz@abv.bg");
         telephone().sendKeys("642636011");
@@ -99,6 +99,21 @@ public class GanSteps extends Tools {
         selectCurrencyA.selectByVisibleText("Euros");
 
 
+    }
+
+    @Then("^validate that error message 'Invalid password. Please retry using a valid password.'appears$")
+    public void verifyInvalidPasswordMessage() throws Throwable {
+        try {
+            validationPasswordMessage().isDisplayed();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        String validationPasswordErrorToBeVerified=validationPasswordMessage().getText();
+        Assert.assertTrue("Text Not found",validationPasswordErrorToBeVerified.contains("Invalid password. Please retry using a valid password.")||validationPasswordErrorToBeVerified.contains("Confirm password required"));
+
+
+        //
+        // destroyDriver();
     }
 
 

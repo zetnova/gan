@@ -93,8 +93,8 @@ public class RegistrationPO extends Tools {
     static synchronized public WebElement selectCurrency() throws Exception {
         return findElementBy(By.xpath("//select[@name='map(currency)']"));
     }
-
-
-
+    static synchronized public WebElement validationPasswordMessage() throws Exception {
+        return findElementBy(By.xpath("//*[@id='signupForm']/div[3]"));
+    }
 
 }
